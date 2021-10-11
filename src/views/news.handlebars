@@ -1,0 +1,45 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practica 1 - News Site</title>
+    <base href="/" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+  <body>
+    <form id="search-form" onsubmit="return false">
+      <nav id="nav" class="nav">
+        <input class="input" id="search-input" type="text" autocomplete="off" placeholder="Introduce aquí tu búsqueda..." />
+        <button class="btn" id="search-btn" type="submit" onclick="handleSearch()">BUSCAR</button>
+      </nav>
+    </form>
+    <section id="main-section">
+      <div id="grid" class="grid">
+        {{#each news}}
+          <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+            <div class="card">
+              <div class="img-container">
+                {{#if urlToImage}}
+                  <img src="{{urlToImage}}" alt={{title}} />
+                {{else}}
+                  <img src="https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png" alt={{title}} />
+                {{/if}}
+
+              </div>
+              <h2>{{#if title}}{{title}}{{else}}- No title -{{/if}}</h2>
+              <p>{{#if description}}{{description}}{{else}}- No description -{{/if}}</p>
+              <a class="btn" href="{{url}}" target="_blank">Ver más</a>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </section>
+    <footer id="footer"></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function handleSearch(){window.location = "/?search=" + document.getElementById("search-input").value; }
+    </script>
+  </body>
+</html>
