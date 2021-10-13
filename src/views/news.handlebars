@@ -3,9 +3,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Practica 1 - News Site</title>
+    <title>Practica 1 - News Site Server Side</title>
     <base href="/" />
     <link rel="stylesheet" href="/styles/styles.css" />
+    <script>
+      function handleSearch(){window.location = "/?search=" + document.getElementById("search-input").value; } function
+      handleImageError(element){element.src = 'https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png'}
+    </script>
   </head>
   <body>
     <form id="search-form" onsubmit="return false">
@@ -21,7 +25,7 @@
             <div class="card">
               <div class="img-container">
                 {{#if urlToImage}}
-                  <img src="{{urlToImage}}" alt={{title}} />
+                  <img src="{{urlToImage}}" alt={{title}} onerror="handleImageError(this)" />
                 {{else}}
                   <img src="https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png" alt={{title}} />
                 {{/if}}
@@ -38,8 +42,5 @@
     <footer id="footer"></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-      function handleSearch(){window.location = "/?search=" + document.getElementById("search-input").value; }
-    </script>
   </body>
 </html>
